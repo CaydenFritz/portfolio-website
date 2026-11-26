@@ -20,8 +20,25 @@ class Base(DeclarativeBase):
     pass
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config['SECRET_KEY'] = 'super_secret_change_later'
+# --------------- Configuration --------------- #
+# Use PostgreSQL on Render, fall back to SQLite locally
+database_url = os.environ.get("DATABASE_URL")
+if database_url and database_url.startswith("postgres://"):
+    # Render uses postgres:// but SQLAlchemy wants postgresql://
+    database_url = database_url.replace("postgres://", "postgresql://", 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url or "sqlite:///users.db"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", "dev-secret-change-me")
+
+# Email settings
+MY_INBOX = os.environ.get("MY_INBOX", "caydenmfritz@gmail.com")
+SMTP_SERVER = "smtp.gmail.com"
+SMTP_PORT = 587
+SENDER_EMAIL = os.environ.get("SENDER_EMAIL", MY_INBOX)
+SENDER_PASSWORD = os.environ.get("SENDER_PASSWORD")   # ← must be set in Render
+
+admin_account = os.environ.get("ADMIN_ACCOUNT", "caydenmfritz@gmail.com")
 
 db = SQLAlchemy(model_class=Base)
 login_manager = LoginManager(app)
