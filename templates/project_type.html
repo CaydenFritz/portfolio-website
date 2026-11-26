@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Type</title>
+</head>
+<body>
+    <h1>Select project type</h1>
+
+    <form method="POST" action="{{ url_for('select_project_type') }}">
+        {{ form.hidden_tag() }}
+
+        <div>
+            {{ form.type(placeholder='Type') }}
+            {% for error in form.type.errors %}
+                <span style="color: red">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+
+        <br>
+
+        <div>
+            {{ form.submit }}
+        </div>
+
+    </form>
+</body>
+</html>

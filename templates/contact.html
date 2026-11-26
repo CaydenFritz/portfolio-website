@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>My Portfolio - Cayden</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}"/>
+    <noscript>
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/noscript.css') }}"/>
+    </noscript>
+</head>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <div class="inner">
+
+            <!-- Logo -->
+            <a href="{{ url_for('home') }}" class="logo">
+                <span class="symbol"><img src="{{ url_for('static', filename='images/logo.svg') }}" alt=""/></span><span
+                    class="title">Portfolio</span>
+            </a>
+
+            <!-- Nav -->
+            <nav>
+                <ul>
+                    <li><a href="#menu">Menu</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+
+            {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="inner">
+            <section>
+                <h2>Get in touch</h2>
+                <form method="post" action="#">
+                    {{ form.hidden_tag() }}
+
+                    <div class="fields">
+                        <div class="field half">
+                            {{ form.name(placeholder="Name") }}
+                            {% for error in form.name.errors %}
+                            <span style="color: red">[{{ error }}]</span>
+                            {% endfor %}
+                        </div>
+                        <div class="field half">
+                            {{ form.email(placeholder="Email") }}
+                            {% for error in form.email.errors %}
+                            <span style="color: red">[{{ error }}]</span>
+                            {% endfor %}
+                        </div>
+                        <div class="field">
+                            {{ form.message(placeholder="Message") }}
+                            {% for error in form.message.errors %}
+                            <span style="color: red">[{{ error }}]</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <ul class="actions">
+                        <li>{{ form.submit(placeholder="Send") }}</li>
+                    </ul>
+                </form>
+            </section>
+            <section>
+                <h2>Socials</h2>
+                <ul class="icons">
+                    <li><a href="https://www.instagram.com/caydenmfritz" class="icon brands style2 fa-instagram"><span
+                            class="label">Instagram</span></a></li>
+                    <li><a href="https://www.youtube.com/@helloanimationsyt" class="icon brands style2 fa-youtube"><span
+                            class="label">YouTube</span></a></li>
+                    <li><a href="https://github.com/CaydenFritz" class="icon brands style2 fa-github"><span
+                            class="label">GitHub</span></a></li>
+                    <li><a href="tel:+6233416814" class="icon solid style2 fa-phone"><span
+                            class="label">Phone</span></a></li>
+                    <li><a href="mailto:caydenmfritz@gmail.com" class="icon solid style2 fa-envelope"><span
+                            class="label">Email</span></a></li>
+                </ul>
+            </section>
+
+            <ul class="copyright">
+                <li>&copy; {{ owner }}. All rights reserved | {{ start_date }} - {{ date }}</li>
+            </ul>
+        </div>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+
+</body>
+</html>

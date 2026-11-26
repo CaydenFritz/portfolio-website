@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+    <form method="post">
+        {{ form.hidden_tag() }}
+
+        <div>
+            {{ form.name(placeholder='Name') }}
+            {% for error in form.name.errors %}
+                <span style="color: red">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+
+        <br>
+
+        <div>
+            {{ form.description(placeholder='Description') }}
+            {% for error in form.description.errors %}
+                <span style="color: red">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+
+        <br>
+
+        <div>
+            {{ form.html_url(placeholder='Itch.io URL') }}
+            {% for error in form.html_url.errors %}
+                <span style="color: red">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+
+<!--        <br>-->
+
+<!--        <div>-->
+<!--            {{ form.image_urls(placeholder='Image URLs') }}-->
+<!--            {% for error in form.image_urls.errors %}-->
+<!--                <span style="color: red">[{{ error }}]</span>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+
+<!--        <br>-->
+
+<!--        <div>-->
+<!--            {{ form.video_urls(placeholder='Video URLs') }}-->
+<!--            {% for error in form.video_urls.errors %}-->
+<!--                <span style="color: red">[{{ error }}]</span>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+
+        <br>
+
+        <div>
+            <label>Tools Used</label>
+            {{ form.tools(placeholder='Tools') }}
+            {% for error in form.tools.errors %}
+                <span style="color: red">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+
+        <br>
+
+        <div>
+            {{ form.submit }}
+        </div>
+
+    </form>
+</body>
+</html>

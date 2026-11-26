@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>About</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}"/>
+    <noscript>
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/noscript.css') }}"/>
+    </noscript>
+</head>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <div class="inner">
+            <!-- Logo -->
+            <a href="{{ url_for('home') }}" class="logo">
+                <span class="symbol"><img src="{{ url_for('static', filename='images/logo.svg') }}" alt=""/></span><span
+                    class="title">Portfolio</span>
+            </a>
+
+            <!-- Nav -->
+            <nav>
+                <ul>
+                    <li><a href="#menu">Menu</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+
+            {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
+
+            {% if current_user.email == admin_account %}
+            <li><a href="{{ url_for('select_project_type') }}">Add Project</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
+            <header>
+                <h1>About.</h1>
+            </header>
+
+            <span class="image main">
+                <!-- replace with a real photo of me -->
+                <img src="{{ url_for('static', filename='images/colorful_geometry2.jpg') }}" alt="Cayden Fritz"/>
+            </span>
+
+            <p>
+                <strong>Technology is marvelous,</strong>
+                I use it to create systems and games, to animate emotion, solve problems, <i>(and create some too)</i>.
+            </p>
+
+            <p>
+                I've been interested in it since before I knew what it was! I build and animate my own characters and scenes,
+                program large-scale systems and video games, and passionately create my ideas.
+                I really enjoy the full circumference of tech and design, whether it be building an apps'
+                interactive UI, or the physics system of an RPG, I'm there for it.
+            </p>
+
+            <label>
+                My Skills Include:
+            </label>
+
+            <ul>
+                <li>Full-Stack Software Development</li>
+                <li>3D Art / Technical Design</li>
+                <li>3D Animation / Character Design</li>
+            </ul>
+
+            <p>
+                This portfolio is a living collection of the projects I've built and the things I'm currently creating
+                or exploring.
+                Please feel free to look around, see what interests you, and don't hesitate to <a
+                    href="{{ url_for('contact') }}">reach out.</a>
+            </p>
+
+            <ul class="actions">
+                <li><a href="{{ url_for('home') }}" class="button primary">View Projects</a></li>
+                <li><a href="{{ url_for('contact') }}" class="button">Contact Me</a></li>
+            </ul>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="inner">
+            <section>
+                <h2>Socials</h2>
+                <ul class="icons">
+                    <li><a href="https://www.instagram.com/caydenmfritz" class="icon brands style2 fa-instagram"><span
+                            class="label">Instagram</span></a></li>
+                    <li><a href="https://www.youtube.com/@helloanimationsyt" class="icon brands style2 fa-youtube"><span
+                            class="label">YouTube</span></a></li>
+                    <li><a href="https://github.com/CaydenFritz" class="icon brands style2 fa-github"><span
+                            class="label">GitHub</span></a></li>
+                    <li><a href="tel:+6233416814" class="icon solid style2 fa-phone"><span
+                            class="label">Phone</span></a></li>
+                    <li><a href="mailto:caydenmfritz@gmail.com" class="icon solid style2 fa-envelope"><span
+                            class="label">Email</span></a></li>
+                </ul>
+            </section>
+            <ul class="copyright">
+                <li>&copy; {{ owner }}. All rights reserved | {{ start_date }} - {{ date }}</li>
+            </ul>
+        </div>
+    </footer>
+</div>
